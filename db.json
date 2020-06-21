@@ -1,0 +1,49 @@
+{
+  "Employees": [
+    {
+      "id": 1,
+      "employeeCode": "E1",
+      "firstName": "Romin",
+      "lastName": "Irani",
+      "jobTitleName": "Developer",
+      "phoneNumber": "408-1234567",
+      "emailAddress": "romin.irani@gmail.com",
+      "skills": ["php", "javaScript", "c++", "java"],
+      "education": {
+        "college": "xyz college",
+        "ranks": 2,
+        "score": 7.9
+      }
+    },
+    {
+      "id": 2,
+      "employeeCode": "E2",
+      "firstName": "Neil",
+      "lastName": "Irani",
+      "jobTitleName": "Developer",
+      "phoneNumber": "408-1111111",
+      "emailAddress": "neilirani@gmail.com",
+      "skills": ["node", "javaScript", "angular", "react"],
+      "education": {
+        "college": "xyz college",
+        "ranks": 1,
+        "score": 8.5
+      }
+    },
+    {
+      "id": 3,
+      "employeeCode": "E3",
+      "firstName": "Tom",
+      "lastName": "Hanks",
+      "jobTitleName": "Designer",
+      "phoneNumber": "408-2222222",
+      "emailAddress": "tomhanks@gmail.com",
+      "skills": ["xd", "sketch", "html", "css3"],
+      "education": {
+        "college": "xyz college",
+        "ranks": 3,
+        "score": 7.6
+      }
+    }
+  ]
+}
