@@ -11,7 +11,7 @@ const emailRegex = RegExp(
 const phoneRegex = RegExp(/^\d+$/);
 const floatRegex = RegExp(/^[+-]?\d+(\.\d+)?$/);
 
-/** formValid to check the invalid and empty fields before submit */
+/** formValid method to check the invalid and empty fields before submit */
 const formValid = ({ formErrors, ...args }) => {
   let valid = true;
 
@@ -24,7 +24,7 @@ const formValid = ({ formErrors, ...args }) => {
   return valid;
 };
 
-class AddEmployee extends Component {
+class EditEmployee extends Component {
   /** State */
   state = {
     firstName: "",
@@ -34,7 +34,7 @@ class AddEmployee extends Component {
     college: "",
     rank: "",
     score: "",
-    jobTitleName: "Developer",
+    jobTitleName: "",
     employeeCode: "",
     skills: [],
     formErrors: {
@@ -51,9 +51,37 @@ class AddEmployee extends Component {
     errorMessage: "",
   };
 
+  /** Effects - life cycle */
+  componentDidMount() {
+    this.loadEmployee();
+  }
+
+  /** Methods */
+  loadEmployee = async () => {
+    const {
+      match: {
+        params: { id },
+      },
+    } = this.props;
+
+    const { data } = await axios.get(`http://localhost:4000/Employees/${id}`);
+    this.setState({
+      firstName: data.firstName,
+      lastName: data.lastName,
+      emailAddress: data.emailAddress,
+      phoneNumber: data.phoneNumber,
+      college: data.education.college,
+      rank: data.education.ranks,
+      score: data.education.score,
+      jobTitleName: data.jobTitleName,
+      employeeCode: data.employeeCode,
+      skills: [...data.skills],
+    });
+  };
+
   /** Input hander method and checking form validation */
   handleInput = (event) => {
-    // event.preventDefault();
+    event.preventDefault();
     const { name, value } = event.target;
     let formErrors = this.state.formErrors;
 
@@ -93,7 +121,6 @@ class AddEmployee extends Component {
         formErrors.employeeCode =
           value.length < 2 ? "Minimum of 2 characters" : "";
         break;
-
       default:
         break;
     }
@@ -117,11 +144,15 @@ class AddEmployee extends Component {
     this.setState({ skills: this.state.skills });
   }
 
-  /** save employee method */
-  onSaveEmployee = async (e) => {
+  /** edit employee by id method */
+  onEditEmployee = async (e) => {
     e.preventDefault();
-
     if (formValid(this.state)) {
+      const {
+        match: {
+          params: { id },
+        },
+      } = this.props;
       const data = {
         employeeCode: this.state.employeeCode,
         firstName: this.state.firstName,
@@ -136,7 +167,7 @@ class AddEmployee extends Component {
           score: this.state.score,
         },
       };
-      await axios.post("http://localhost:4000/Employees", data);
+      await axios.put(`http://localhost:4000/Employees/${id}`, data);
       this.props.history.push("/");
     } else {
       this.setState({
@@ -149,15 +180,15 @@ class AddEmployee extends Component {
   render() {
     const { formErrors } = this.state;
     return (
-      <section className="addEmployee">
+      <section className="editEmployee">
         <div className="container">
           <div className="row">
             <div className="col-md-10 m-auto">
 
               {/* card section start */}
               <div className="card card-body shadow border-0 p-4">
-                <h2 className="text-center my-3">Add New Employee</h2>
-                <form onSubmit={this.onSaveEmployee}>
+                <h2 className="text-center my-3">Edit Employee</h2>
+                <form onSubmit={this.onEditEmployee}>
 
                   {/* Personal information */}
                   <div className="mb-5">
@@ -341,7 +372,7 @@ class AddEmployee extends Component {
                       </select>
                     </div>
 
-                    {/* skills section */}
+                    {/* Skills section */}
                     <div className="form-group">
                       <label>Skills</label>
                       {this.state.skills.map((skill, index) => {
@@ -377,8 +408,8 @@ class AddEmployee extends Component {
                   </div>
 
                   <div>
-                    <button className="btn btn-primary mr-2" type="submit">
-                      Save
+                    <button className="btn btn-warning mr-2" type="submit">
+                      Update
                     </button>
                     <Link to="/" className="btn btn-danger">
                       Cancel
@@ -399,4 +430,4 @@ class AddEmployee extends Component {
   }
 }
 
-export default AddEmployee;
+export default EditEmployee;

@@ -13,3 +13,7 @@
   justify-content: center;
   flex-direction: column;
 }
+
+section {
+  padding: 2rem 0;
+}

@@ -8,7 +8,12 @@
       "jobTitleName": "Developer",
       "phoneNumber": "408-1234567",
       "emailAddress": "romin.irani@gmail.com",
-      "skills": ["php", "javaScript", "c++", "java"],
+      "skills": [
+        "php",
+        "javaScript",
+        "c++",
+        "java"
+      ],
       "education": {
         "college": "xyz college",
         "ranks": 2,
@@ -23,7 +28,12 @@
       "jobTitleName": "Developer",
       "phoneNumber": "408-1111111",
       "emailAddress": "neilirani@gmail.com",
-      "skills": ["node", "javaScript", "angular", "react"],
+      "skills": [
+        "node",
+        "javaScript",
+        "angular",
+        "react"
+      ],
       "education": {
         "college": "xyz college",
         "ranks": 1,
@@ -38,12 +48,36 @@
       "jobTitleName": "Designer",
       "phoneNumber": "408-2222222",
       "emailAddress": "tomhanks@gmail.com",
-      "skills": ["xd", "sketch", "html", "css3"],
+      "skills": [
+        "xd",
+        "sketch",
+        "html",
+        "css3"
+      ],
       "education": {
         "college": "xyz college",
         "ranks": 3,
         "score": 7.6
       }
+    },
+    {
+      "employeeCode": "E4",
+      "firstName": "Prasath",
+      "lastName": "Ravichandran",
+      "jobTitleName": "Developer",
+      "phoneNumber": "9047421474",
+      "emailAddress": "prasath@gmail.com",
+      "skills": [
+        "JavaScript",
+        "Php",
+        "Node.js"
+      ],
+      "education": {
+        "college": "Sri Ramakrishna Engineering college",
+        "ranks": "2",
+        "score": "7.2"
+      },
+      "id": 4
     }
   ]
 }

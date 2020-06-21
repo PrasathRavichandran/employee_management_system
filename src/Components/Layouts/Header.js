@@ -15,6 +15,11 @@ const Header = () => {
                 Home
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink exact to="/view/json" className="nav-link">
+                Show Json
+              </NavLink>
+            </li>
           </ul>
           <Link
             to="/add/employee"

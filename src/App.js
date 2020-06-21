@@ -6,7 +6,10 @@ import "./App.css";
 /** components */
 import Header from "./Components/Layouts/Header";
 import Home from "./Components/Pages/Home";
+import ViewEmployee from "./Components/Pages/ViewEmployee";
+import ViewJson from "./Components/Pages/ViewJson";
 import AddEmployee from "./Components/Pages/AddEmployee";
+import EditEmployee from "./Components/Pages/EditEmployee";
 import NotFound from "./Components/Pages/NotFound";
 class App extends Component {
   render() {
@@ -20,6 +23,9 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/add/employee" component={AddEmployee} />
+            <Route exact path="/view/json" component={ViewJson} />
+            <Route exact path="/edit/employee/:id" component={EditEmployee} />
+            <Route exact path="/view/employee/:id" component={ViewEmployee} />
             <Route component={NotFound} />
           </Switch>
         </div>
