@@ -17,8 +17,9 @@ const formValid = ({ formErrors, ...args }) => {
 
   Object.values(formErrors).forEach((val) => val.length > 0 && (valid = false));
 
-  Object.values(args).forEach((val) => {
-    val === null && (valid = false);
+  Object.keys(args).forEach((key) => {
+    let value = args[key];
+    (value === null || value === "") && (key !== "skills" && key !== "errorMessage") && (valid = false);
   });
 
   return valid;
@@ -45,8 +46,7 @@ class AddEmployee extends Component {
       college: "",
       rank: "",
       score: "",
-      employeeCode: "",
-      skills: "",
+      employeeCode: ""
     },
     errorMessage: "",
   };
@@ -139,6 +139,14 @@ class AddEmployee extends Component {
       await axios.post("http://localhost:4000/Employees", data);
       this.props.history.push("/");
     } else {
+      const state = { ...this.state };
+      let formErrors = this.state.formErrors;
+      Object.keys(state).forEach((key) => {
+        let v = state[key];
+        if (v.length === 0 && key !== "skills" && key !== "errorMessage") {
+          formErrors[key] = "Enter value for this mandatory field";
+        }
+      });
       this.setState({
         errorMessage: "Form is Invalid. Please check the form before submit.",
       });
@@ -153,18 +161,16 @@ class AddEmployee extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-10 m-auto">
-
               {/* card section start */}
               <div className="card card-body shadow border-0 p-4">
                 <h2 className="text-center my-3">Add New Employee</h2>
                 <form onSubmit={this.onSaveEmployee}>
-
                   {/* Personal information */}
                   <div className="mb-5">
                     <p className="h4">Personal Information</p>
                     <hr />
                     <div className="form-group">
-                      <label>Firstname</label>
+                      <label><span className="text-danger">*</span> Firstname</label>
                       <input
                         type="text"
                         className={
@@ -183,7 +189,7 @@ class AddEmployee extends Component {
                       )}
                     </div>
                     <div className="form-group">
-                      <label>Lastname</label>
+                      <label><span className="text-danger">*</span> Lastname</label>
                       <input
                         type="text"
                         className={
@@ -202,7 +208,7 @@ class AddEmployee extends Component {
                       )}
                     </div>
                     <div className="form-group">
-                      <label>Email Address</label>
+                      <label><span className="text-danger">*</span> Email Address</label>
                       <input
                         type="email"
                         className={
@@ -221,7 +227,7 @@ class AddEmployee extends Component {
                       )}
                     </div>
                     <div className="form-group">
-                      <label>Contact number</label>
+                      <label><span className="text-danger">*</span> Contact number</label>
                       <input
                         type="text"
                         className={
@@ -246,7 +252,7 @@ class AddEmployee extends Component {
                     <p className="h4">Education</p>
                     <hr />
                     <div className="form-group">
-                      <label>College</label>
+                      <label><span className="text-danger">*</span> College</label>
                       <input
                         type="text"
                         className={
@@ -265,7 +271,7 @@ class AddEmployee extends Component {
                       )}
                     </div>
                     <div className="form-group">
-                      <label>Rank</label>
+                      <label><span className="text-danger">*</span> Rank</label>
                       <input
                         type="text"
                         className={
@@ -284,7 +290,7 @@ class AddEmployee extends Component {
                       )}
                     </div>
                     <div className="form-group">
-                      <label>Score</label>
+                      <label><span className="text-danger">*</span> Score</label>
                       <input
                         type="text"
                         className={
@@ -309,7 +315,7 @@ class AddEmployee extends Component {
                     <p className="h4">Job Description</p>
                     <hr />
                     <div className="form-group">
-                      <label>Employee Code</label>
+                      <label><span className="text-danger">*</span> Employee Code</label>
                       <input
                         type="text"
                         className={
@@ -328,7 +334,7 @@ class AddEmployee extends Component {
                       )}
                     </div>
                     <div className="form-group">
-                      <label>Job title</label>
+                      <label><span className="text-danger">*</span> Job title</label>
                       <select
                         className="custom-select"
                         name="jobTitleName"
@@ -390,7 +396,6 @@ class AddEmployee extends Component {
                 </form>
               </div>
               {/* End of card section */}
-
             </div>
           </div>
         </div>

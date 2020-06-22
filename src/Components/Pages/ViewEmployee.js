@@ -77,7 +77,7 @@ class ViewEmployee extends Component {
     }
 
     return (
-      <section className="viewEmployee">
+      <section className="viewEmployee" style={{overflow:'hidden'}}>
         <div className="row">
           <div className="col-md-9 m-auto">
             <div className="card card-body border-0 shadow p-5">

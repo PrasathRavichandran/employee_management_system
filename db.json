@@ -1,7 +1,6 @@
 {
   "Employees": [
     {
-      "id": 1,
       "employeeCode": "E1",
       "firstName": "Romin",
       "lastName": "Irani",
@@ -9,7 +8,6 @@
       "phoneNumber": "408-1234567",
       "emailAddress": "romin.irani@gmail.com",
       "skills": [
-        "php",
         "javaScript",
         "c++",
         "java"
@@ -18,7 +16,8 @@
         "college": "xyz college",
         "ranks": 2,
         "score": 7.9
-      }
+      },
+      "id": 1
     },
     {
       "id": 2,
@@ -65,17 +64,17 @@
       "firstName": "Prasath",
       "lastName": "Ravichandran",
       "jobTitleName": "Developer",
-      "phoneNumber": "9047421474",
+      "phoneNumber": "90474214444",
       "emailAddress": "prasath@gmail.com",
       "skills": [
-        "JavaScript",
-        "Php",
-        "Node.js"
+        "JS",
+        "Angular",
+        "React"
       ],
       "education": {
         "college": "Sri Ramakrishna Engineering college",
-        "ranks": "2",
-        "score": "7.2"
+        "ranks": "5",
+        "score": "6.5"
       },
       "id": 4
     }
